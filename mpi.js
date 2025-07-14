@@ -303,7 +303,7 @@ questions.forEach((q, index) => {
   const container = document.createElement("div");
   container.className = "question";
   container.innerHTML = `
-        <p>質問${index + 1}: ${q.text}</p>
+        <h3 class="question-label">${q.text}</h3>
         <label><input type="radio" name="q${index}" value="Yes" required> はい</label>
         <label><input type="radio" name="q${index}" value="No"> いいえ</label>
         <label><input type="radio" name="q${index}" value="DK"> どちらでもない</label>
