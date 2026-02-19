@@ -12,13 +12,6 @@ body {
   align-items: center;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  body {
-    padding: 1rem;
-  }
-}
-
 /* =========================
    TYPOGRAPHY
 ========================= */
@@ -30,6 +23,7 @@ p {
 h1 {
   font-weight: 500;
   color: #5c3f98;
+  padding: 1rem;
 }
 
 /* =========================
@@ -246,4 +240,26 @@ canvas {
 
 #results {
   margin-top: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  #description {
+    width: 80%;
+    max-width: 80%;
+  }
+
+  .question-card {
+    width: 80%;
+    padding: 1rem 2rem;
+    max-width: 80%;
+  }
+
+  .pane {
+    width: 80%;
+  }
 }
