@@ -1,13 +1,27 @@
+/* =========================
+   BASE / LAYOUT
+========================= */
 body {
-  padding: 1rem 2rem 2rem;
+  padding: 2rem;
 }
 
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive */
 @media (max-width: 600px) {
   body {
-    padding: 0 1rem 1rem;
+    padding: 1rem;
   }
 }
 
+/* =========================
+   TYPOGRAPHY
+========================= */
 p {
   margin: 0 0 8px;
   font-size: 1.15rem;
@@ -18,34 +32,83 @@ h1 {
   color: #5c3f98;
 }
 
+/* =========================
+   DESCRIPTION BOX
+========================= */
+#description {
+  width: 100%;
+  max-width: 900px;
+  padding: 1.5rem;
+  color: #3d3d3d;
+  border-radius: 10px;
+  text-decoration: none;
+  z-index: 0;
+  background: linear-gradient(to bottom, #dbd2ec, #f3f0f9);
+}
+
+#description p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+#description strong {
+  color: #5a4fcf;
+  font-weight: 600;
+}
+
+/* =========================
+   QUIZ LAYOUT
+========================= */
+#quiz {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 0.5rem;
+  margin-top: 2rem;
+}
+
+#quizForm {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* (legacy / si aún lo usas en alguna parte) */
+.question {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-top {
+  width: 100%;
+}
+
 .question-label {
   font-weight: 500;
   margin: 0 0 8px;
 }
 
-#description {
-  padding: 1.5rem;
-  color: #3d3d3d;
-  background-color: #f2f8f9;
-  border-radius: 10px;
-  text-decoration: none;
-  z-index: 0;
-  overflow: hidden;
-  background: linear-gradient(to bottom, #dbd2ec, #f3f0f9);
-}
-
-#quiz {
+/* =========================
+   NAV BUTTONS
+========================= */
+.nav {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  justify-content: center;
-  padding: 0rem 0.5rem;
-  margin-top: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-#submit-button {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+button {
   background-color: #f3f7fe;
   color: #5c3f98;
   border: none;
@@ -56,24 +119,38 @@ h1 {
   padding: 0.5rem 1rem;
 }
 
-#submit-button:hover {
+button:hover {
   background-color: #5c3f98;
   box-shadow: 0 0 0 2px #7f58cd;
   color: #fff;
 }
 
-.canvas-wrapper {
+/* =========================
+   QUESTION CARD
+========================= */
+.question-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 500px;
-  aspect-ratio: 1 / 1;
-  margin: auto;
+  padding: 1rem 2rem;
+  max-width: 700px;
+  border-radius: 1rem;
+  background: linear-gradient(to bottom, #dbd2ec, #f3f0f9);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-canvas {
-  width: 100% !important;
-  height: 100% !important;
+.question-count {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
 
+/* =========================
+   ANSWER OPTIONS (PANE)
+========================= */
 .pane {
   display: flex;
   justify-content: space-between;
@@ -81,7 +158,7 @@ canvas {
   border: 2px solid #876ac1;
   border-radius: 8px;
   padding: 0.25rem;
-  max-width: 400px;
+  width: 400px;
   margin: 1rem 0;
   gap: 8px;
 }
@@ -95,10 +172,20 @@ canvas {
   color: #5c3f98;
 }
 
+/* 
+  IMPORTANT (bug fix):
+  Antes tenías pointer-events: none; y eso puede impedir que el radio reciba el click
+  o que dispare el change correctamente (según navegador / móvil).
+  Este bloque lo deja invisible pero clickeable ocupando todo el label.
+*/
 .option input[type="radio"] {
   position: absolute;
+  inset: 0; /* cubre todo el label */
+  width: 100%;
+  height: 100%;
   opacity: 0;
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .option input[type="radio"]:focus + span {
@@ -122,4 +209,23 @@ canvas {
 .option input[type="radio"]:checked + span {
   background-color: #876ac1;
   color: white;
+}
+
+/* =========================
+   CHART / CANVAS
+========================= */
+.canvas-wrapper {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  margin: auto;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#results {
+  margin-top: 4rem;
 }

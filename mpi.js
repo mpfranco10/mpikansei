@@ -298,59 +298,191 @@ const questions = [
 ];
 
 const quizDiv = document.getElementById("quiz");
+const form = document.getElementById("quizForm");
 
-questions.forEach((q, index) => {
-  const container = document.createElement("div");
-  container.className = "question";
-  container.innerHTML = `
-    <h3 class="question-label">${q.text}</h3>
-    <div class="pane"> 
-      <label class="option">
-        <input type="radio" name="q${index}" value="Yes" required />
-        <span>はい</span>
-      </label>
-      <label class="option">
-        <input type="radio" name="q${index}" value="DK" />
-        <span>?</span>
-      </label>
-      <label class="option">
-        <input type="radio" name="q${index}" value="No" />
-        <span>いいえ</span>
-      </label>
-    </div>  
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const submitBtn = document.getElementById("submitBtn");
+
+let currentIndex = 0;
+
+// Stores answers: "q0" -> "Yes"/"DK"/"No"
+const answers = {};
+
+// Tracks whether the quiz is finished (prevents further rendering/navigation)
+let isFinished = false;
+
+function renderQuestion(index) {
+  if (isFinished) return;
+
+  const q = questions[index];
+
+  quizDiv.innerHTML = `
+    <div class="question-card">
+      <div class="question-top">
+        <div class="question-count">${index + 1} / ${questions.length}</div>
+        <h3 class="question-label">${q.text}</h3>
+      </div>
+
+      <div class="pane">
+        ${renderOption(index, "Yes", "はい")}
+        ${renderOption(index, "DK", "?")}
+        ${renderOption(index, "No", "いいえ")}
+      </div>
+    </div>
   `;
-  quizDiv.appendChild(container);
+
+  // Button state
+  prevBtn.disabled = index === 0;
+
+  const isLast = index === questions.length - 1;
+  nextBtn.style.display = isLast ? "none" : "inline-block";
+  submitBtn.style.display = isLast ? "inline-block" : "none";
+
+  // Re-check previously saved answer (if any)
+  const saved = answers[`q${index}`];
+  if (saved) {
+    const input = quizDiv.querySelector(
+      `input[name="q${index}"][value="${saved}"]`,
+    );
+    if (input) input.checked = true;
+  }
+
+  // Ensure submit is enabled only when everything is answered
+  updateSubmitState();
+}
+
+function renderOption(index, value, label) {
+  const name = `q${index}`;
+  return `
+    <label class="option">
+      <input type="radio" name="${name}" value="${value}" />
+      <span>${label}</span>
+    </label>
+  `;
+}
+
+// Returns true if every question has an answer saved
+function allAnswered() {
+  for (let i = 0; i < questions.length; i++) {
+    if (!answers[`q${i}`]) return false;
+  }
+  return true;
+}
+
+// Enables/disables the submit button depending on completion
+function updateSubmitState() {
+  submitBtn.disabled = !allAnswered();
+}
+
+// Saves the currently selected answer (if any)
+function saveCurrentAnswer() {
+  const checked = document.querySelector(
+    `input[name="q${currentIndex}"]:checked`,
+  );
+  if (checked) {
+    answers[`q${currentIndex}`] = checked.value;
+    return true;
+  }
+  return false;
+}
+
+nextBtn.addEventListener("click", () => {
+  if (isFinished) return;
+
+  if (!saveCurrentAnswer()) {
+    alert("次へ進む前に、回答を選択してください。");
+    return;
+  }
+
+  currentIndex++;
+  renderQuestion(currentIndex);
 });
 
-let chartInstance = null;
+prevBtn.addEventListener("click", () => {
+  if (isFinished) return;
+  if (currentIndex === 0) return;
 
-document
-  .getElementById("quizForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+  // No need to force-save here; answers are saved on change
+  currentIndex--;
+  renderQuestion(currentIndex);
+});
 
-    let eScore = 0;
-    let nScore = 0;
-    let lScore = 0;
+// Auto-save + auto-advance on selection (except for the last question)
+quizDiv.addEventListener("change", (e) => {
+  if (isFinished) return;
 
-    questions.forEach((q, index) => {
-      const val = document.querySelector(
-        `input[name='q${index}']:checked`
-      ).value;
-      if (val === q.key) {
-        if (q.trait === "E") eScore++;
-        else if (q.trait === "N") nScore++;
-        else if (q.trait === "L") lScore++;
-      }
-    });
+  const target = e.target;
+  if (!target.matches('input[type="radio"]')) return;
 
-    document.getElementById("results").innerHTML =
-      `<p><strong>Eスコア（外向性）:</strong> ${eScore} / 48</p>` +
-      `<p><strong>Nスコア（神経症傾向）:</strong> ${nScore} / 48</p>` +
-      `<p><strong>Lスコア（虚偽尺度）:</strong> ${lScore} / 24</p>`;
+  // Save answer for the current question
+  answers[`q${currentIndex}`] = target.value;
 
-    plotScores(eScore, nScore);
+  // Update submit state (in case the last missing answer was just filled)
+  updateSubmitState();
+
+  const isLast = currentIndex === questions.length - 1;
+
+  // On the last question, do not auto-advance; just show submit
+  if (isLast) {
+    nextBtn.style.display = "none";
+    submitBtn.style.display = "inline-block";
+    return;
+  }
+
+  // Auto-advance
+  currentIndex++;
+  renderQuestion(currentIndex);
+});
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (isFinished) return;
+
+  // Block submit if not all questions are answered
+  if (!allAnswered()) {
+    alert("すべての質問に回答してから結果を表示してください。");
+    updateSubmitState();
+    return;
+  }
+
+  // Compute scores
+  let eScore = 0;
+  let nScore = 0;
+  let lScore = 0;
+
+  questions.forEach((q, index) => {
+    const val = answers[`q${index}`];
+    if (val === q.key) {
+      if (q.trait === "E") eScore++;
+      else if (q.trait === "N") nScore++;
+      else if (q.trait === "L") lScore++;
+    }
   });
+
+  // Mark quiz as finished and hide the quiz UI
+  isFinished = true;
+
+  // Hide question area and navigation buttons
+  quizDiv.style.display = "none";
+  prevBtn.style.display = "none";
+  nextBtn.style.display = "none";
+  submitBtn.style.display = "none";
+
+  // Render results only
+  document.getElementById("results").innerHTML =
+    `<p><strong>Eスコア（外向性）:</strong> ${eScore} / 48</p>` +
+    `<p><strong>Nスコア（神経症傾向）:</strong> ${nScore} / 48</p>` +
+    `<p><strong>Lスコア（虚偽尺度）:</strong> ${lScore} / 24</p>`;
+
+  plotScores(eScore, nScore);
+});
+
+// Initial render
+renderQuestion(currentIndex);
+updateSubmitState();
+
+let chartInstance = null;
 
 function plotScores(e, n) {
   const ctx = document.getElementById("scoreChart").getContext("2d");
@@ -375,7 +507,7 @@ function plotScores(e, n) {
             chartArea.left + col * xStep,
             chartArea.top + row * yStep,
             xStep,
-            yStep
+            yStep,
           );
         }
       }

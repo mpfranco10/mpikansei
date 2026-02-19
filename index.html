@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
@@ -10,38 +10,51 @@
     <script src="mpi.js" defer></script>
   </head>
   <body>
-    <h1>アイゼンク性格検査（E・N・Lスコア）</h1>
+    <div id="container">
+      <h1>アイゼンク性格検査（E・N・Lスコア）</h1>
 
-    <div id="description">
-      <p>
-        モーズレイMPIテストは、『外向性・内向性』、『神経症的傾向』の2つの特性を同時に図ることを目的とした、集団でも個人でも使える、質問紙法のパーソナリティテストです。ロンドン大学教授H.J.アイゼンクにより作成され、イギリスをはじめヨーロッパやアメリカでも利用されている国際的なパーソナリティテストのひとつです。
-      </p>
+      <div id="description">
+        <p>
+          モーズレイMPIテストは、『<strong>外向性・内向性</strong>』、『<strong>神経症的傾向</strong>』の2つの特性を同時に図ることを目的とした、集団でも個人でも使える、質問紙法のパーソナリティテストです。ロンドン大学教授<strong>H.J.アイゼンク</strong>により作成され、イギリスをはじめヨーロッパやアメリカでも利用されている<strong>国際的なパーソナリティテスト</strong>のひとつです。
+        </p>
 
-      <p>
-        80問の回答を提出すると、あなたの現在のパーソナリティが地図に表示されます。X軸（Extra
-        Verted）とY軸（Neurosis）でE+N+, E+N0, E+N-, E0N+, E0N0, E0N-, E-N+,
-        E-N0, E-N-という9つのタイプに分類されます。
-      </p>
+        <p>
+          <strong>80問</strong
+          >の回答を提出すると、あなたの現在のパーソナリティが地図に表示されます。X軸（<strong
+            >Extra Verted</strong
+          >）とY軸（<strong>Neurosis</strong>）で<strong
+            >E+N+, E+N0, E+N-, E0N+, E0N0, E0N-, E-N+, E-N0, E-N-</strong
+          >という<strong>9つのタイプ</strong>に分類されます。
+        </p>
 
-      <p>
-        しかし、時間、環境、状況によって少しずつ変化することがあり、「感性」研究では人間の抽象的な感性データの客観化によく用いられています。
-      </p>
+        <p>
+          しかし、時間、環境、状況によって少しずつ変化することがあり、「<strong>感性</strong>」研究では人間の抽象的な感性データの客観化によく用いられています。
+        </p>
 
-      <p>
-        ＊注意する点は、正直に答えることです。データとして使えない場合があります。
-      </p>
-    </div>
+        <p>
+          ＊<strong>注意する点</strong>は、<strong>正直に答えること</strong>です。データとして使えない場合があります。
+        </p>
+      </div>
 
-    <form id="quizForm">
-      <div id="quiz"></div>
-      <button type="submit" id="submit-button">結果を表示</button>
-    </form>
-    <div id="results"></div>
+      <form id="quizForm">
+        <div id="quiz"></div>
 
-    <div id="plotContainer" style="display: none; margin-top: 30px">
-      <h2>スコアプロット</h2>
-      <div class="canvas-wrapper">
-        <canvas id="scoreChart"></canvas>
+        <div class="nav">
+          <button type="button" id="prevBtn">前へ</button>
+          <button type="button" id="nextBtn">次へ</button>
+          <button type="submit" id="submitBtn" style="display: none">
+            結果を見る
+          </button>
+        </div>
+      </form>
+
+      <div id="results"></div>
+
+      <div id="plotContainer" style="display: none; margin-top: 30px">
+        <h2>スコアプロット</h2>
+        <div class="canvas-wrapper">
+          <canvas id="scoreChart"></canvas>
+        </div>
       </div>
     </div>
   </body>
