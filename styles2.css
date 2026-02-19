@@ -95,9 +95,9 @@ h1 {
 .question-label {
   font-weight: 500;
   margin: 0 0 8px;
+  display: block;
   height: 3.5rem;
-  min-height: 3.5rem;
-  max-height: 3.5rem;
+  overflow: hidden;
 }
 
 /* =========================
