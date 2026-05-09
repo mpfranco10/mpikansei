@@ -40,6 +40,7 @@ h1 {
   background: linear-gradient(to bottom, #dbd2ec, #f3f0f9);
   max-height: 250px;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 #description p {
@@ -234,11 +235,6 @@ canvas {
 @media (max-width: 600px) {
   body {
     padding: 1rem;
-  }
-
-  #description {
-    width: 80%;
-    max-width: 80%;
   }
 
   #note {
