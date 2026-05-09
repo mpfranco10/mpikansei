@@ -32,8 +32,8 @@ export const translations = {
       heading: "アイゼンク性格検査（E・N・Lスコア）",
       plot: "スコアプロット",
     },
-    description: ` <p> モーズレイMPIテストは、『<strong>外向性・内向性</strong>』、 『<strong>神経症的傾向</strong>』の2つの特性を同時に図ることを目的とした、 集団でも個人でも使える、質問紙法のパーソナリティテストです。 ロンドン大学教授<strong>H.J.アイゼンク</strong>により作成され、 イギリスをはじめヨーロッパやアメリカでも利用されている <strong>国際的なパーソナリティテスト</strong>のひとつです。 </p> <p> <strong>80問</strong>の回答を提出すると、 あなたの現在のパーソナリティが地図に表示されます。 X軸（<strong>Extra Verted</strong>）と Y軸（<strong>Neurosis</strong>）で <strong> E+N+, E+N0, E+N-, E0N+, E0N0, E0N-, E-N+, E-N0, E-N- </strong> という<strong>9つのタイプ</strong>に分類されます。 </p> <p> しかし、時間、環境、状況によって少しずつ変化することがあり、 「<strong>感性</strong>」研究では人間の抽象的な感性データの 客観化によく用いられています。 </p> <p> ＊<strong>注意する点</strong>は、 <strong>正直に答えること</strong>です。 データとして使えない場合があります。 </p> `,
-
+    description: ` <p> モーズレイMPIテストは、『<strong>外向性・内向性</strong>』、 『<strong>神経症的傾向</strong>』の2つの特性を同時に図ることを目的とした、 集団でも個人でも使える、質問紙法のパーソナリティテストです。 ロンドン大学教授<strong>H.J.アイゼンク</strong>により作成され、 イギリスをはじめヨーロッパやアメリカでも利用されている <strong>国際的なパーソナリティテスト</strong>のひとつです。 </p> <p> <strong>80問</strong>の回答を提出すると、 あなたの現在のパーソナリティが地図に表示されます。 X軸（<strong>Extra Verted</strong>）と Y軸（<strong>Neurosis</strong>）で <strong> E+N+, E+N0, E+N-, E0N+, E0N0, E0N-, E-N+, E-N0, E-N- </strong> という<strong>9つのタイプ</strong>に分類されます。 </p> <p> しかし、時間、環境、状況によって少しずつ変化することがあり、 「<strong>感性</strong>」研究では人間の抽象的な感性データの 客観化によく用いられています。 </p>`,
+    note: `<p> ＊<strong>注意する点</strong>は、 <strong>正直に答えること</strong>です。 データとして使えない場合があります。 </p> `,
     questions: {
       q1: "知り合いを少人数に限定する傾向がありますか？",
       q2: "行動を計画するよりも、すぐに行動する方が好きですか？",
@@ -151,8 +151,8 @@ export const translations = {
       heading: "Eysenck Personality Inventory (E/N/L Scores)",
       plot: "Score Plot",
     },
-    description: ` <p> The Maudsley Personality Inventory (MPI) is a questionnaire-based personality test designed to measure two personality dimensions at the same time: <strong>Extraversion/Introversion</strong> and <strong>Neurotic Tendencies</strong>. It was created by <strong>H. J. Eysenck</strong>, professor at the University of London, and is considered one of the internationally recognized personality tests used in the United Kingdom, Europe, and the United States. </p> <p> After answering <strong>80 questions</strong>, your current personality will be displayed on a map. Using the X-axis (<strong>Extraversion</strong>) and Y-axis (<strong>Neuroticism</strong>), you will be categorized into one of <strong>9 personality types</strong>: <strong> E+N+, E+N0, E+N-, E0N+, E0N0, E0N-, E-N+, E-N0, E-N- </strong>. </p> <p> However, personality traits may gradually change depending on time, environment, and circumstances. In <strong>Kansei (affective) research</strong>, this test is often used to help objectively analyze abstract human emotional and sensory data. </p> <p> <strong>Important:</strong> Please answer honestly. Otherwise, the data may not be valid for analysis. </p> `,
-
+    description: ` <p> The Maudsley Personality Inventory (MPI) is a questionnaire-based personality test designed to measure two personality dimensions at the same time: <strong>Extraversion/Introversion</strong> and <strong>Neurotic Tendencies</strong>. It was created by <strong>H. J. Eysenck</strong>, professor at the University of London, and is considered one of the internationally recognized personality tests used in the United Kingdom, Europe, and the United States. </p> <p> After answering <strong>80 questions</strong>, your current personality will be displayed on a map. Using the X-axis (<strong>Extraversion</strong>) and Y-axis (<strong>Neuroticism</strong>), you will be categorized into one of <strong>9 personality types</strong>: <strong> E+N+, E+N0, E+N-, E0N+, E0N0, E0N-, E-N+, E-N0, E-N- </strong>. </p> <p> However, personality traits may gradually change depending on time, environment, and circumstances. In <strong>Kansei (affective) research</strong>, this test is often used to help objectively analyze abstract human emotional and sensory data. </p>`,
+    note: `<p> <strong>Important:</strong> Please answer honestly. Otherwise, the data may not be valid for analysis. </p> `,
     questions: {
       q1: "Do you tend to limit your acquaintances to a small number of people?",
       q2: "Do you prefer acting immediately rather than planning your actions?",

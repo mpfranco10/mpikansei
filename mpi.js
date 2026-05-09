@@ -92,6 +92,7 @@ document.getElementById("pageTitle").textContent = t.page.title;
 document.getElementById("mainTitle").textContent = t.page.heading;
 document.getElementById("plotTitle").textContent = t.page.plot;
 document.getElementById("description").innerHTML = t.description;
+document.getElementById("note").innerHTML = t.note;
 
 const quizDiv = document.getElementById("quiz");
 const form = document.getElementById("quizForm");

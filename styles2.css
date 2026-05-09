@@ -2,7 +2,7 @@
    BASE / LAYOUT
 ========================= */
 body {
-  padding: 0 2rem;
+  padding: 0 2rem 1rem;
 }
 
 #container {
@@ -47,9 +47,14 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
-#description strong {
+strong {
   color: #5a4fcf;
   font-weight: 600;
+}
+
+#note {
+  padding-top: 1.5rem;
+  max-width: 900px;
 }
 
 /* =========================
@@ -232,6 +237,11 @@ canvas {
   }
 
   #description {
+    width: 80%;
+    max-width: 80%;
+  }
+
+  #note {
     width: 80%;
     max-width: 80%;
   }
