@@ -221,6 +221,12 @@ quizDiv.addEventListener("change", (e) => {
   renderQuestion(currentIndex);
 });
 
+function getScoreValue(answer, key) {
+  if (answer === "DK") return 1;
+  if (answer === key) return 2;
+  return 0;
+}
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   if (isFinished) return;
@@ -231,19 +237,26 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  let eScore = 0;
-  let nScore = 0;
-  let lScore = 0;
+  let eRawScore = 0;
+  let nRawScore = 0;
+  let lRawScore = 0;
 
   questions.forEach((q, index) => {
     const val = answers[`q${index}`];
+    const score = getScoreValue(val, q.key);
 
-    if (val === q.key) {
-      if (q.trait === "E") eScore++;
-      else if (q.trait === "N") nScore++;
-      else if (q.trait === "L") lScore++;
-    }
+    if (q.trait === "E") eRawScore += score;
+    else if (q.trait === "N") nRawScore += score;
+    else if (q.trait === "L") lRawScore += score;
   });
+
+  const eMaxRaw = questions.filter((q) => q.trait === "E").length * 2;
+  const nMaxRaw = questions.filter((q) => q.trait === "N").length * 2;
+  const lMaxRaw = questions.filter((q) => q.trait === "L").length * 2;
+
+  const eScore = Math.round((eRawScore / eMaxRaw) * 48);
+  const nScore = Math.round((nRawScore / nMaxRaw) * 48);
+  const lScore = Math.round((lRawScore / lMaxRaw) * 24);
 
   isFinished = true;
 
