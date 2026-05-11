@@ -58,6 +58,18 @@ strong {
   max-width: 900px;
 }
 
+#logo {
+  width: 4rem;
+  height: 4rem;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
 /* =========================
    QUIZ LAYOUT
 ========================= */
@@ -212,6 +224,23 @@ button:disabled {
   color: white;
 }
 
+/*
+Source - https://stackoverflow.com/a/10100209
+Posted by NoviceCoding, modified by community. See post 'Timeline' for change history
+Retrieved 2026-05-11, License - CC BY-SA 4.0
+*/
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #876ac1;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
 /* =========================
    CHART / CANVAS
 ========================= */
@@ -250,6 +279,10 @@ canvas {
 
   .pane {
     width: 80%;
+  }
+
+  h1 {
+    font-size: 1.25rem;
   }
 }
 
