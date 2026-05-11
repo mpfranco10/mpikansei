@@ -1,6 +1,14 @@
 /* =========================
    BASE / LAYOUT
 ========================= */
+html:lang(ja) {
+  font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+}
+
+html:lang(en) {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
 body {
   padding: 0 2rem 1rem;
 }
@@ -107,7 +115,7 @@ strong {
 }
 
 .question-label {
-  font-weight: 500;
+  font-weight: 400;
   margin: 0 0 8px;
   display: block;
   min-height: 7rem;

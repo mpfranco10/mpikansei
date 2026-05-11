@@ -1,8 +1,8 @@
 import { translations } from "./translations.js";
 
 const browserLang = navigator.language.startsWith("ja") ? "ja" : "en";
-console.log(browserLang);
 const t = translations[browserLang] || translations.en;
+document.documentElement.lang = browserLang;
 
 const questions = [
   { id: "q1", trait: "E", key: "Yes" },
